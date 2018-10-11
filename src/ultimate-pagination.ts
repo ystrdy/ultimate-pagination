@@ -1,4 +1,4 @@
-import {createRange} from './ultimate-pagination-utils';
+import {createRange, map} from './ultimate-pagination-utils';
 import {
   createPageFunctionFactory,
   createFirstEllipsis,
@@ -68,12 +68,12 @@ export function getPaginationModel(options: PaginationModelOptions): PaginationM
     // Calculate group of first pages
     const firstPagesStart = 1;
     const firstPagesEnd = boundaryPagesRange;
-    const firstPages = createRange(firstPagesStart,  firstPagesEnd).map(createPage);
+    const firstPages = map(createRange(firstPagesStart,  firstPagesEnd), createPage);
 
     // Calculate group of last pages
     const lastPagesStart = totalPages + 1 - boundaryPagesRange;
     const lastPagesEnd = totalPages;
-    const lastPages = createRange(lastPagesStart, lastPagesEnd).map(createPage);
+    const lastPages = map(createRange(lastPagesStart, lastPagesEnd), createPage);
 
     // Calculate group of main pages
     const mainPagesStart = Math.min(
@@ -84,7 +84,7 @@ export function getPaginationModel(options: PaginationModelOptions): PaginationM
       lastPagesStart - ellipsisSize - 2 * siblingPagesRange - 1
     );
     const mainPagesEnd = mainPagesStart + 2 * siblingPagesRange;
-    const mainPages = createRange(mainPagesStart,  mainPagesEnd).map(createPage);
+    const mainPages = map(createRange(mainPagesStart,  mainPagesEnd), createPage);
 
     // Add group of first pages
     paginationModel.push(...firstPages);
