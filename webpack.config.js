@@ -1,7 +1,9 @@
+const path = require('path');
+
 module.exports = {
   entry: './src/ultimate-pagination.ts',
   output: {
-    path: './dist',
+    path: path.resolve(__dirname, './dist'),
     library: 'ultimatePagination',
     libraryTarget: 'umd'
   },
