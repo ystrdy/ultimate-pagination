@@ -62,7 +62,7 @@ export function getPaginationModel(options: PaginationModelOptions): PaginationM
 
   // Simplify generation of pages if number of available items is equal or greater than total pages to show
   if (1 + 2 * ellipsisSize + 2 * siblingPagesRange + 2 * boundaryPagesRange >= totalPages) {
-    const allPages = createRange(1,  totalPages).map(createPage);
+    const allPages = map(createRange(1,  totalPages), createPage);
     paginationModel.push(...allPages);
   } else {
     // Calculate group of first pages
